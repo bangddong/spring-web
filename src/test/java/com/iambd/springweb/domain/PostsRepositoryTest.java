@@ -8,6 +8,8 @@ import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Optional;
+import java.util.stream.Stream;
 
 @DataJpaTest
 class PostsRepositoryTest {
@@ -45,6 +47,18 @@ class PostsRepositoryTest {
         Assertions.assertEquals(testPost.getContent(), "테스트 본문");
     }
 
+    // desc 정렬이니 ID가 역순으로 조회되어야 함.
+    @Test
+    @DisplayName("게시글저장_불러오기_정렬")
+    void 게시글저장_불러오기_정렬() {
+        //given
+        int testId = 2;
+        //when
+        Stream<Posts> postList = postsRepository.findAllDesc();
+        //then
+        Assertions.assertEquals(testId, postList.findFirst().get().getId());
+    }
+
     @Test
     @DisplayName("BaseTimeEntity_등록")
     void BaseTimeEntity_등록() {
@@ -64,6 +78,12 @@ class PostsRepositoryTest {
         Posts testPost = postsList.get(0);
         Assertions.assertTrue(testPost.getCreateTime().isAfter(now));
         Assertions.assertTrue(testPost.getModifiedDate().isAfter(now));
+    }
+
+    @Test
+    void 게시글목록_불러오기() {
+        //given
+
     }
 
 }
