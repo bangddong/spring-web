@@ -6,10 +6,7 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 /*
     실제 DB와 매칭될 클래스 (Entitiy)
@@ -20,7 +17,7 @@ import javax.persistence.Id;
 public class Posts extends BaseTimeEntity {
 
     @Id // PK값
-    @GeneratedValue // 시퀀스
+    @GeneratedValue(strategy = GenerationType.IDENTITY) // 시퀀스
     private Long id;
 
     @Column(length = 500, nullable = false)
