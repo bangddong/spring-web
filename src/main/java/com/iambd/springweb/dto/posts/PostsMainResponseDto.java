@@ -27,5 +27,6 @@ public class PostsMainResponseDto {
         return Optional.ofNullable(localDateTime)
                 .map(formatter::format) // true
                 .orElse(""); // false
+        // test commit 용
     }
 }
