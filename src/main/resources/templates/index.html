@@ -11,6 +11,78 @@
         .entry-content a, .post-header h1 em, .comments h2 .count {
             color: #04beb8
         }
+
+        .main-banner {
+            position: relative;
+            width: 100%;
+            height: 383px;
+        }
+
+        .main-banner .dimmed {
+            position: relative;
+            width: 100%;
+            height: 383px;
+        }
+
+        .main-banner .bg-item {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            background-position: center center;
+            background-image: url("/css/images/new-banner.png");
+        }
+
+        .main-banner .dimmed {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 9;
+            background: rgba(0,0,0,0.4);
+        }
+
+        .main-banner .dimmed .content-layout {
+            position: relative;
+            height: 100%;
+            margin-top: 0;
+            overflow: hidden;
+        }
+
+        .main-banner .dimmed .description {
+            float: left;
+            margin-top: 85px;
+        }
+
+        .main-banner .dimmed p.text {
+            margin: 6px 0 30px;
+            font-size: 56px;
+            font-weight: bold;
+            line-height: 72px;
+            letter-spacing: -0.5px;
+        }
+
+        .main-banner .dimmed a[role=button] {
+            padding: 12px 22px;
+            font-size: 21px;
+            font-weight: 500;
+            letter-spacing: -0.5px;
+            background-color: rgba(255,255,255,0);
+            border: 1px solid #ffffff;
+            border-radius: 2px;
+            color: #ffffff;
+        }
+
+        .content-layout {
+            max-width: calc(980px - (30px * 2));
+            margin-right: auto;
+            margin-left: auto;
+            padding-right: 30px;
+            padding-left: 30px;
+        }
     </style>
     <link rel="stylesheet" type="text/css" href="/css/custom/btn.css">
     <link rel="stylesheet" type="text/css" href="/css/custom/content.css">
@@ -28,36 +100,50 @@
     <header id="header">
         <div class="inner">
             <h1>
-                <a href="/">
+                <a href="/index">
                     빵똥
                 </a>
             </h1>
-            <nav id="gnb">
-                <ul style="width: 271px;">
-                    <li class="t_menu_home first current">
-                        <a href="/">홈</a>
-                    </li>
-                    <li class="t_menu_tag">
-                        <a href="/tag">태그</a>
-                    </li>
-                    <li class="t_menu_guestbook last">
-                        <a href="/guestbook">방명록</a>
-                    </li>
-                </ul>
-            </nav>
+<!--            <nav id="gnb">-->
+<!--                <ul style="width: 271px;">-->
+<!--                    <li class="t_menu_home first current">-->
+<!--                        <a href="/index">홈</a>-->
+<!--                    </li>-->
+<!--                    <li class="t_menu_tag">-->
+<!--                        <a href="javascript:void(0);" onclick="readyAlert()">게시글</a>-->
+<!--                    </li>-->
+<!--                    <li class="t_menu_guestbook last">-->
+<!--                        <a href="javascript:void(0);" onclick="readyAlert()">방명록</a>-->
+<!--                    </li>-->
+<!--                </ul>-->
+<!--            </nav>-->
         </div>
     </header>
     <section id="container">
+        <div class="main-banner">
+            <div class="bg-item"></div>
+            <div class="dimmed">
+                <div class="content-layout">
+                    <div class="description">
+                        <p class="text">
+                            우아한 개발자가<br>
+                            되어주시겠습니까
+                        </p>
+                        <a href="javascript:void(0);" onclick="readyAlert()" role="button">지원하러가기</a>
+                    </div>
+                </div>
+            </div>
+        </div>
         <div class="content-wrap">
             <article id="content">
                 <div class="post-header">
-                    <h1><span>전체 글</span><em>1</em></h1>
+                    <h1><span>전체 글</span><em th:text="${totCnt}"></em></h1>
                 </div>
                 <div class="inner">
                     <div th:each="post:${posts}" class="post-item">
-                        <a href="/1">
+                        <a th:href="@{|/post/${post.id}|}">
                             <span class="thum">
-                                <img src="/static/css/images/coffee.jfif" alt="">
+                                <img src="/css/images/coffee.jfif" alt="">
                             </span>
                             <span th:text="${post.title}" class="title"></span>
                             <span th:text="${post.content}" class="excerpt"></span>
@@ -80,7 +166,7 @@
                         <ul class="tt_category">
                             <li class="">
                                 <a class="link_tit" href="/category">
-                                    분류 전체보기
+                                    혜원이 사랑해♥
                                 </a>
                             </li>
                         </ul>
@@ -95,10 +181,15 @@
             <div class="order-menu">
             </div>
             <a href="#" class="page-top">TOP</a>
-            <p class="meta">TEL. 02.1234.5678 / 경기 성남시 분당구 판교역로</p>
-            <p class="copyright">© Kakao Corp.</p>
+            <p class="meta">TEL. 010.2357.6148 / 경기 부천시 원종동</p>
+            <p class="copyright">dhbang@gmission.com</p>
         </div>
     </footer>
 </div>
+<script>
+    function readyAlert() {
+        alert('구현중입니다.');
+    }
+</script>
 </body>
 </html>

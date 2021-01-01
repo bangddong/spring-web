@@ -1,9 +1,11 @@
 package com.iambd.springweb.service;
 
+import com.iambd.springweb.domain.posts.Posts;
 import com.iambd.springweb.domain.posts.PostsRepository;
 import com.iambd.springweb.dto.posts.PostsMainResponseDto;
 import com.iambd.springweb.dto.posts.PostsSaveRequestDto;
 import lombok.AllArgsConstructor;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -22,9 +24,19 @@ public class PostsService {
     }
 
     @Transactional(readOnly = true)
-    public List<PostsMainResponseDto> findAllDesc() {
-        return postsRepository.findAllDesc()
+    public List<PostsMainResponseDto> getPosts() {
+
+        return postsRepository.findAll()
+                .stream()
                 .map(PostsMainResponseDto::new)
                 .collect(Collectors.toList());
+    }
+
+    @Transactional(readOnly = true)
+    public PostsMainResponseDto getPost(long id) {
+        // findById의 return post가 없으면 에러 발생
+        Posts post = postsRepository.findById(id).orElseThrow(() -> new IllegalAccessError("[postId : " + id + "] 해당 게시글이 존재하지 않습니다."));
+
+        return new PostsMainResponseDto(post);
     }
 }

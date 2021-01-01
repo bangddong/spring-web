@@ -316,6 +316,7 @@ a:active {text-decoration:none;}
     margin: 0 auto;
     padding: 0 20px;
 }
+/* 우측 구분선 삭제
 #container .content-wrap:before {
     content: "";
     position: absolute;
@@ -327,6 +328,7 @@ a:active {text-decoration:none;}
     margin-left: 255px;
     background-color: #eee;
 }
+ */
 #container .content-wrap:after {
     content: "";
     clear: both;

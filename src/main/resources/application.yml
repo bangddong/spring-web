@@ -6,11 +6,13 @@ spring:
 ---
 spring:
   datasource:
+    driver-class-name: org.mariadb.jdbc.Driver
+    url: jdbc:mariadb://localhost:3306/spring_web?characterEncoding=UTF-8&serverTimezone=UTC
+    username: root
+    password: ehdgusdl2
     data: classpath:data-h2.sql # 시작할때 실행시킬 script
   jpa:
     show-sql: true
-    hibernate:
-      ddl-auto: create-drop
   h2:
     console:
       enabled: true
