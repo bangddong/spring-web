@@ -34,6 +34,6 @@ public class WebController {
     public String getPost(Model model, @PathVariable long id) {
         model.addAttribute("post",postsService.getPost(id));
 
-        return "index";
+        return "posts/post";
     }
 }
