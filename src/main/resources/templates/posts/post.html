@@ -1,12 +1,9 @@
-<html xmlns:th="http://www.thymeleaf.org" lang="ko">
-<head>
-    <meta name="referrer" content="always">
-    <meta name="description" content="">
-
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, width=device-width">
-    <title>빵똥</title>
+<html lang="ko"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="layout/default">
+<th:block layout:fragment="content-title">메인</th:block>
+<th:block layout:fragment="css">
     <style type="text/css">
         .entry-content a, .post-header h1 em, .comments h2 .count {
             color: #04beb8
@@ -70,98 +67,93 @@
             max-width: 1080px;
             margin: 34px auto 0;
             font-size: 0.875em;
-            color: rgba(255,255,255,0.6);
+            color: rgba(255, 255, 255, 0.6);
         }
     </style>
-    <link rel="stylesheet" type="text/css" th:href="@{/css/custom/style.css}">
-    <link rel="stylesheet" type="text/css" th:href="@{/css/custom/btn.css}">
-    <link rel="stylesheet" type="text/css" th:href="@{/css/custom/content.css}">
-    <link rel="stylesheet" type="text/css" th:href="@{/css/custom/lightbox.css}">
-    <link rel="stylesheet" type="text/css" th:href="@{/css/custom/style.css}">
-    <link rel="stylesheet" type="text/css" th:href="@{/css/font/font.css}">
-</head>
-<body id="tt-body-page" class="layout-aside-right paging-number" style="">
+</th:block>
+<th:block layout:fragment="script">
+    <script>
+        function readyAlert() {
+            alert('구현중입니다.');
+        }
+    </script>
+</th:block>
+<div layout:fragment="content" id="tt-body-page" class="layout-aside-right paging-number" style="">
 
-<div style="margin:0; padding:0; border:none; background:none; float:none; clear:none; z-index:0"></div>
-<div id="acc-nav">
-    <a href="#content">본문 바로가기</a>
-</div>
-<div id="wrap">
-    <header th:replace="fragments/header :: post-header"></header>
-    <section id="container">
-        <div class="content-wrap">
-            <article id="content">
-                <div class="inner">
-                    <!-- 게시글 상단 -->
-                    <div class="post-cover"
-                         style="background-image:url(https://t1.daumcdn.net/cfile/tistory/99AE79475FEC7C4B34)">
-                        <div class="inner">
-                            <span class="category">카테고리 없음</span>
-                            <h1 th:text="${post.title}"></h1>
-                            <span class="meta">
+    <div style="margin:0; padding:0; border:none; background:none; float:none; clear:none; z-index:0"></div>
+    <div id="acc-nav">
+        <a href="#content">본문 바로가기</a>
+    </div>
+    <div id="wrap">
+        <section id="container">
+            <div class="content-wrap">
+                <article id="content">
+                    <div class="inner">
+                        <!-- 게시글 상단 -->
+                        <div class="post-cover"
+                             style="background-image:url(https://t1.daumcdn.net/cfile/tistory/99AE79475FEC7C4B34)">
+                            <div class="inner">
+                                <span class="category">카테고리 없음</span>
+                                <h1 th:text="${post.title}"></h1>
+                                <span class="meta">
                                 <span th:text="|by ${post.author}|" class="author"></span>
                                 <span th:text="${#strings.substring(post.createTime,0,10)}" class="date"></span>
                                 <a href="https://dhbang.tistory.com/manage/post/1?returnURL=https%3A%2F%2Fdhbang.tistory.com%2F1">수정</a>
                                 <a href="#" onclick="deleteEntry(1); return false;">삭제</a>
                             </span>
+                            </div>
                         </div>
-                    </div>
-                    <!-- 게시글 본문 -->
-                    <div class="entry-content">
+                        <!-- 게시글 본문 -->
+                        <div class="entry-content">
 
-                    </div>
-                    <!-- 댓글 -->
-                    <div class="comments">
-                        <h2>댓글<span class="count"><span id="commentCount1_0">0</span></span></h2>
-                        <div id="entry1Comment">
+                        </div>
+                        <!-- 댓글 -->
+                        <div class="comments">
+                            <h2>댓글<span class="count"><span id="commentCount1_0">0</span></span></h2>
+                            <div id="entry1Comment">
 
 
-                            <form method="post" action="/comment/add/1" onsubmit="return false" style="margin: 0">
-                                <div class="comment-form">
+                                <form method="post" action="/comment/add/1" onsubmit="return false" style="margin: 0">
+                                    <div class="comment-form">
 
                                     <textarea name="comment" cols="" rows="4"
                                               placeholder="여러분의 소중한 댓글을 입력해주세요."></textarea>
-                                    <div class="submit">
-                                        <button type="submit" class="btn" onclick="addComment(this, 1); return false;">
-                                            등록
-                                        </button>
+                                        <div class="submit">
+                                            <button type="submit" class="btn"
+                                                    onclick="addComment(this, 1); return false;">
+                                                등록
+                                            </button>
+                                        </div>
                                     </div>
-                                </div>
-                            </form>
+                                </form>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="pagination">
-                    <a class="prev no-more-prev">이전</a>
+                    <div class="pagination">
+                        <a class="prev no-more-prev">이전</a>
 
-                    <a><span class="selected">1</span></a>
+                        <a><span class="selected">1</span></a>
 
-                    <a class="next no-more-next">다음</a>
-                </div>
-            </article>
-            <aside id="aside" class="sidebar">
-                <div class="sidebar-1">
-                    <!-- 카테고리 -->
-                    <nav class="category">
-                        <ul class="tt_category">
-                            <li class="">
-                                <a class="link_tit" href="/category">
-                                    혜원이 사랑해♥
-                                </a>
-                            </li>
-                        </ul>
-                    </nav>
-                </div>
-            </aside>
-        </div>
-    </section>
-    <hr>
-    <footer th:replace="fragments/footer :: post-footer"></footer>
+                        <a class="next no-more-next">다음</a>
+                    </div>
+                </article>
+                <aside id="aside" class="sidebar">
+                    <div class="sidebar-1">
+                        <!-- 카테고리 -->
+                        <nav class="category">
+                            <ul class="tt_category">
+                                <li class="">
+                                    <a class="link_tit" href="/category">
+                                        혜원이 사랑해♥
+                                    </a>
+                                </li>
+                            </ul>
+                        </nav>
+                    </div>
+                </aside>
+            </div>
+        </section>
+        <hr>
+    </div>
 </div>
-<script>
-    function readyAlert() {
-        alert('구현중입니다.');
-    }
-</script>
-</body>
 </html>
