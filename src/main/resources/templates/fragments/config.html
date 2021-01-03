@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="ko"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head th:fragment="post-config">
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, width=device-width">
+
+    <!-- 공통 css -->
+    <link rel="stylesheet" type="text/css" href="/css/custom/btn.css">
+    <link rel="stylesheet" type="text/css" href="/css/custom/content.css">
+    <link rel="stylesheet" type="text/css" href="/css/custom/lightbox.css">
+    <link rel="stylesheet" type="text/css" href="/css/custom/style.css">
+    <link rel="stylesheet" type="text/css" href="/css/font/font.css">
+    <!-- 페이지별 css -->
+    <th:block layout:fragment="css"></th:block>
+
+    <!-- 공통 js -->
+    <!-- 페이지별 script -->
+    <th:block layout:fragment="script"></th:block>
+</head>
+</html>

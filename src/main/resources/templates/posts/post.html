@@ -73,11 +73,12 @@
             color: rgba(255,255,255,0.6);
         }
     </style>
-    <link rel="stylesheet" type="text/css" href="/css/custom/btn.css">
-    <link rel="stylesheet" type="text/css" href="/css/custom/content.css">
-    <link rel="stylesheet" type="text/css" href="/css/custom/lightbox.css">
-    <link rel="stylesheet" type="text/css" href="/css/custom/style.css">
-    <link rel="stylesheet" type="text/css" href="/css/font/font.css">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/custom/style.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/custom/btn.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/custom/content.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/custom/lightbox.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/custom/style.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/font/font.css}">
 </head>
 <body id="tt-body-page" class="layout-aside-right paging-number" style="">
 
@@ -86,133 +87,30 @@
     <a href="#content">본문 바로가기</a>
 </div>
 <div id="wrap">
-    <header id="header">
-        <div class="inner">
-            <h1>
-                <a href="/index">
-                    빵똥
-                </a>
-            </h1>
-            <nav id="gnb">
-                <ul style="width: 284px;">
-                    <li class="t_menu_home first current">
-                        <a href="/index">홈</a>
-                    </li>
-                    <li class="t_menu_tag">
-                        <a href="javascript:void(0);" onclick="readyAlert()">게시글</a>
-                    </li>
-                    <li class="t_menu_guestbook last">
-                        <a href="javascript:void(0);" onclick="readyAlert()">방명록</a>
-                    </li>
-                </ul>
-            </nav>
-        </div>
-    </header>
+    <header th:replace="fragments/header :: post-header"></header>
     <section id="container">
         <div class="content-wrap">
             <article id="content">
                 <div class="inner">
+                    <!-- 게시글 상단 -->
                     <div class="post-cover"
                          style="background-image:url(https://t1.daumcdn.net/cfile/tistory/99AE79475FEC7C4B34)">
                         <div class="inner">
                             <span class="category">카테고리 없음</span>
-                            <h1>환영합니다!</h1>
+                            <h1 th:text="${post.title}"></h1>
                             <span class="meta">
-                                <span class="author">by IamBD IamBD</span>
-                                <span class="date">2020. 12. 30.</span>
+                                <span th:text="|by ${post.author}|" class="author"></span>
+                                <span th:text="${#strings.substring(post.createTime,0,10)}" class="date"></span>
                                 <a href="https://dhbang.tistory.com/manage/post/1?returnURL=https%3A%2F%2Fdhbang.tistory.com%2F1">수정</a>
                                 <a href="#" onclick="deleteEntry(1); return false;">삭제</a>
                             </span>
                         </div>
                     </div>
+                    <!-- 게시글 본문 -->
                     <div class="entry-content">
-                        <h3 data-ke-size="size23">#1 글을 작성하고 블로그를 관리해보세요.</h3>
-                        <figure class="imageblock alignCenter" data-origin-width="1200" data-origin-height="600"
-                                data-ke-mobilestyle="widthContent"><span
-                                data-url="https://t1.daumcdn.net/cfile/tistory/99AE79475FEC7C4B34"
-                                data-lightbox="lightbox" data-alt=""><img
-                                src="https://t1.daumcdn.net/cfile/tistory/99AE79475FEC7C4B34"
-                                srcset="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&amp;fname=https%3A%2F%2Ft1.daumcdn.net%2Fcfile%2Ftistory%2F99AE79475FEC7C4B34"
-                                data-origin-width="1200" data-origin-height="600"
-                                data-ke-mobilestyle="widthContent"></span></figure>
-                        <p data-ke-size="size16">IamBD님의 회원 가입을 진심으로 축하합니다. 이 글은 비공개로 작성돼 있습니다.<br>'<a
-                                href="/manage/post/1">편집</a>'으로 내용을 바꾸시거나, 삭제 후 '<a href="/manage/post">새 글을 작성</a>'하셔도
-                            됩니다.<br>글 뿐만 아니라 블로그의 각종 설정을 변경할 수도 있습니다. '<a href="/manage">블로그관리</a>'를 확인해보세요.</p>
-                        <p data-ke-size="size16">&nbsp;</p>
-                        <h3 data-ke-size="size23">#2 다양한 스킨이 있어요.</h3>
-                        <figure class="imageblock alignCenter" data-origin-width="1200" data-origin-height="600"
-                                data-ke-mobilestyle="widthContent"><span
-                                data-url="https://t1.daumcdn.net/cfile/tistory/99A119385FEC7C4B33"
-                                data-lightbox="lightbox" data-alt=""><img
-                                src="https://t1.daumcdn.net/cfile/tistory/99A119385FEC7C4B33"
-                                srcset="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&amp;fname=https%3A%2F%2Ft1.daumcdn.net%2Fcfile%2Ftistory%2F99A119385FEC7C4B33"
-                                data-origin-width="1200" data-origin-height="600"
-                                data-ke-mobilestyle="widthContent"></span></figure>
-                        <p data-ke-size="size16">티스토리에 있는 다양한 '<a href="https://www.tistory.com/skin">스킨</a>'도 살펴
-                            보세요.<br>블로그나 사이트를 사용하는 목적에 맞게 스킨을 고를 수 있습니다.<br>어떤 이야기를 주로 하실 건가요? 잘 생각해 보시고, 마음에 드는 스킨을
-                            고르세요.<br>'<a href="/manage/design/skin/edit#/">스킨 편집</a>'을 통해 다양한 커스텀, 그리고 홈 꾸미기를 적용하실 수도
-                            있답니다.</p>
 
-                        <p data-ke-size="size16">&nbsp;</p>
-                        <h3 data-ke-size="size23">#3 포럼에서 사람들과 소통하세요.</h3>
-                        <figure class="imageblock alignCenter" data-origin-width="1200" data-origin-height="600"
-                                data-ke-mobilestyle="widthContent"><span
-                                data-url="https://t1.daumcdn.net/cfile/tistory/99B27E365FEC7C4B34"
-                                data-lightbox="lightbox" data-alt=""><img
-                                src="https://t1.daumcdn.net/cfile/tistory/99B27E365FEC7C4B34"
-                                srcset="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&amp;fname=https%3A%2F%2Ft1.daumcdn.net%2Fcfile%2Ftistory%2F99B27E365FEC7C4B34"
-                                data-origin-width="1200" data-origin-height="600"
-                                data-ke-mobilestyle="widthContent"></span></figure>
-                        <p data-ke-size="size16">마지막으로 사용하시다가 티스토리에 대해 궁금한 내용이 있다면 '<a
-                                href="https://www.tistory.com/community/forum">포럼</a>'을 확인하세요.<br>찾기 어려울 땐 직접 질문을 해보는 건
-                            어떨까요? 친절한 티슷터 분들이 바로 답변해 줄 거에요.</p>
-                        <div class="container_postbtn #post_button_group">
-                            <div class="postbtn_like">
-
-                                <script>
-                                    window.ReactionButtonType = 'reaction';
-                                    window.ReactionApiUrl = '//dhbang.tistory.com/reaction';
-                                    window.ReactionReqBody = {
-                                        entryId: 1
-                                    }
-                                </script>
-                                <div class="wrap_btn" id="reaction-1">
-                                    <button class="btn_post uoc-icon">
-                                        <div class="uoc-icon"><span class="ico_postbtn ico_like">좋아요</span><span
-                                                class="txt_like uoc-count">공감</span></div>
-                                    </button>
-                                </div>
-                                <script src="https://t1.daumcdn.net/tistory_admin/assets/blog/tistory-bb323eb22b51314b0bd24b77343800108c15089d/blogs/script/reaction/reaction-button-container.min.js?_version_=tistory-bb323eb22b51314b0bd24b77343800108c15089d"></script>
-                                <div class="wrap_btn wrap_btn_share">
-                                    <button type="button" class="btn_post sns_btn btn_share"
-                                            data-thumbnail-url="https://t1.daumcdn.net/tistory_admin/static/images/openGraph/opengraph.png"
-                                            data-title="환영합니다!" data-description=""
-                                            data-profile-image="https://t1.daumcdn.net/tistory_admin/static/manage/images/r3/default_L.png"
-                                            data-profile-name="IamBD IamBD" data-pc-url="https://dhbang.tistory.com/1"
-                                            data-relative-pc-url="/1" data-blog-title="빵똥">
-                                        <span class="ico_postbtn ico_share">공유하기</span>
-                                    </button>
-                                </div>
-                                <div class="wrap_btn">
-                                    <button type="button" class="btn_post" data-entry-id="1">
-                                        <span class="ico_postbtn ico_statistics">통계</span>
-                                    </button>
-                                </div>
-                                <div class="wrap_btn wrap_btn_etc" data-entry-id="1" data-entry-visibility="private"
-                                     data-category-visibility="public">
-                                    <button type="button" class="btn_post btn_etc1"><span class="ico_postbtn ico_etc">글 요소</span>
-                                    </button>
-                                </div>
-                            </div>
-                            <div class="postbtn_ccl" data-ccl-type="">
-                                <a href="https://creativecommons.org/licenses//4.0/deed.ko" target="_blank"
-                                   class="link_ccl">
-        <span class="bundle_ccl">
-                    </span>
-                                </a>
-                            </div>
-                        </div>
                     </div>
+                    <!-- 댓글 -->
                     <div class="comments">
                         <h2>댓글<span class="count"><span id="commentCount1_0">0</span></span></h2>
                         <div id="entry1Comment">
@@ -231,8 +129,6 @@
                                 </div>
                             </form>
                         </div>
-                        <script type="text/javascript">loadedComments[1] = true;
-                        findFragmentAndHighlight(1)</script>
                     </div>
                 </div>
                 <div class="pagination">
@@ -260,15 +156,7 @@
         </div>
     </section>
     <hr>
-    <footer id="footer">
-        <div class="inner">
-            <div class="order-menu">
-            </div>
-            <a href="#" class="page-top">TOP</a>
-            <p class="meta">TEL. 010.2357.6148 / 경기 부천시 원종동</p>
-            <p class="copyright">dhbang@gmission.com</p>
-        </div>
-    </footer>
+    <footer th:replace="fragments/footer :: post-footer"></footer>
 </div>
 <script>
     function readyAlert() {

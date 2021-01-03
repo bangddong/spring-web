@@ -1,116 +1,35 @@
-<html xmlns:th="http://www.thymeleaf.org" lang="ko">
-<head>
-    <meta name="referrer" content="always">
-    <meta name="description" content="">
-
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, width=device-width">
-    <title>빵똥</title>
+<html lang="ko"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="layout/default">
+<th:block layout:fragment="css">
     <style type="text/css">
-        .entry-content a, .post-header h1 em, .comments h2 .count {
-            color: #04beb8
-        }
-
-        .main-banner {
-            position: relative;
-            width: 100%;
-            height: 383px;
-        }
-
-        .main-banner .dimmed {
-            position: relative;
-            width: 100%;
-            height: 383px;
-        }
-
-        .main-banner .bg-item {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-size: cover;
-            background-position: center center;
-            background-image: url("/css/images/new-banner.png");
-        }
-
-        .main-banner .dimmed {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: 9;
-            background: rgba(0,0,0,0.4);
-        }
-
-        .main-banner .dimmed .content-layout {
-            position: relative;
-            height: 100%;
-            margin-top: 0;
-            overflow: hidden;
-        }
-
-        .main-banner .dimmed .description {
-            float: left;
-            margin-top: 85px;
-        }
-
-        .main-banner .dimmed p.text {
-            margin: 6px 0 30px;
-            font-size: 56px;
-            font-weight: bold;
-            line-height: 72px;
-            letter-spacing: -0.5px;
-        }
-
         .main-banner .dimmed a[role=button] {
             padding: 12px 22px;
             font-size: 21px;
             font-weight: 500;
             letter-spacing: -0.5px;
-            background-color: rgba(255,255,255,0);
+            background-color: rgba(255, 255, 255, 0);
             border: 1px solid #ffffff;
             border-radius: 2px;
             color: #ffffff;
         }
     </style>
-    <link rel="stylesheet" type="text/css" href="/css/custom/btn.css">
-    <link rel="stylesheet" type="text/css" href="/css/custom/content.css">
-    <link rel="stylesheet" type="text/css" href="/css/custom/lightbox.css">
-    <link rel="stylesheet" type="text/css" href="/css/custom/style.css">
-    <link rel="stylesheet" type="text/css" href="/css/font/font.css">
-</head>
-<body id="tt-body-index" class="layout-aside-right paging-number" style="">
+</th:block>
+<th:block layout:fragment="script">
+    <script>
+        function readyAlert() {
+            alert('구현중입니다.');
+        }
+    </script>
+</th:block>
+<div layout:fragment="content" id="tt-body-index" class="layout-aside-right paging-number" style="">
 
 <div style="margin:0; padding:0; border:none; background:none; float:none; clear:none; z-index:0"></div>
 <div id="acc-nav">
     <a href="#content">본문 바로가기</a>
 </div>
 <div id="wrap">
-    <header id="header">
-        <div class="inner">
-            <h1>
-                <a href="/index">
-                    빵똥
-                </a>
-            </h1>
-            <nav id="gnb">
-                <ul style="width: 284px;">
-                    <li class="t_menu_home first current">
-                        <a href="/index">홈</a>
-                    </li>
-                    <li class="t_menu_tag">
-                        <a href="javascript:void(0);" onclick="readyAlert()">게시글</a>
-                    </li>
-                    <li class="t_menu_guestbook last">
-                        <a href="javascript:void(0);" onclick="readyAlert()">방명록</a>
-                    </li>
-                </ul>
-            </nav>
-        </div>
-    </header>
     <section id="container">
         <div class="content-wrap">
             <article id="content">
@@ -126,7 +45,7 @@
                             <span th:text="${post.title}" class="title"></span>
                             <span th:text="${post.content}" class="excerpt"></span>
                             <span class="meta">
-                                <span th:text="${#strings.substring(post.modifiedDate,0,10)}" class="date"></span>
+                                <span th:text="${#strings.substring(post.createTime,0,10)}" class="date"></span>
                             </span>
                         </a>
                     </div>
@@ -154,20 +73,5 @@
         </div>
     </section>
     <hr>
-    <footer id="footer">
-        <div class="inner">
-            <div class="order-menu">
-            </div>
-            <a href="#" class="page-top">TOP</a>
-            <p class="meta">TEL. 010.2357.6148 / 경기 부천시 원종동</p>
-            <p class="copyright">dhbang@gmission.com</p>
-        </div>
-    </footer>
 </div>
-<script>
-    function readyAlert() {
-        alert('구현중입니다.');
-    }
-</script>
-</body>
 </html>

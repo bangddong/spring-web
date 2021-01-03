@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="ko">
+
+<header th:fragment="post-header" id="header">
+    <div class="inner">
+        <h1>
+            <a href="/index">
+                빵똥
+            </a>
+        </h1>
+        <nav id="gnb">
+            <ul style="width: 284px;">
+                <li class="t_menu_home first current">
+                    <a href="/index">홈</a>
+                </li>
+                <li class="t_menu_tag">
+                    <a href="javascript:void(0);" onclick="readyAlert()">게시글</a>
+                </li>
+                <li class="t_menu_guestbook last">
+                    <a href="javascript:void(0);" onclick="readyAlert()">방명록</a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+</header>
+</html>

@@ -13,6 +13,7 @@ public class PostsMainResponseDto {
     private String title;
     private String content;
     private String author;
+    private String createTime;
     private String modifiedDate;
 
     public PostsMainResponseDto(Posts entity) {
@@ -20,6 +21,7 @@ public class PostsMainResponseDto {
         title = entity.getTitle();
         content = entity.getContent();
         author = entity.getAuthor();
+        createTime = toStringDateTime(entity.getCreateTime());
         modifiedDate = toStringDateTime(entity.getModifiedDate());
     }
 
