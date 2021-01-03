@@ -26,53 +26,38 @@
 </th:block>
 <div layout:fragment="content" id="tt-body-index" class="layout-aside-right paging-number" style="">
 
-<div style="margin:0; padding:0; border:none; background:none; float:none; clear:none; z-index:0"></div>
-<div id="acc-nav">
-    <a href="#content">본문 바로가기</a>
-</div>
-<div id="wrap">
-    <section id="container">
-        <div class="content-wrap">
-            <article id="content">
-                <div class="post-header">
-                    <h1><span>전체 글</span><em th:text="${totCnt}"></em></h1>
-                </div>
-                <div class="inner">
-                    <div th:each="post:${posts}" class="post-item">
-                        <a th:href="@{|/post/${post.id}|}">
+    <div id="wrap">
+        <section id="container">
+            <div class="content-wrap">
+
+                <article id="content">
+                    <div class="post-header">
+                        <h1><span>전체 글</span><em th:text="${totCnt}"></em></h1>
+                    </div>
+                    <div class="inner">
+                        <div th:each="post:${posts}" class="post-item">
+                            <a th:href="@{|/post/${post.id}|}">
                             <span class="thum">
                                 <img src="/css/images/coffee.jfif" alt="">
                             </span>
-                            <span th:text="${post.title}" class="title"></span>
-                            <span th:text="${post.content}" class="excerpt"></span>
-                            <span class="meta">
+                                <span th:text="${post.title}" class="title"></span>
+                                <span th:text="${post.content}" class="excerpt"></span>
+                                <span class="meta">
                                 <span th:text="${#strings.substring(post.createTime,0,10)}" class="date"></span>
                             </span>
-                        </a>
+                            </a>
+                        </div>
                     </div>
-                </div>
-                <div class="pagination">
-                    <a class="prev no-more-prev">이전</a>
-                    <a><span class="selected">1</span></a>
-                    <a class="next no-more-next">다음</a>
-                </div>
-            </article>
-            <aside id="aside" class="sidebar">
-                <div class="sidebar-1">
-                    <!-- 카테고리 -->
-                    <nav class="category">
-                        <ul class="tt_category">
-                            <li class="">
-                                <a class="link_tit" href="/category">
-                                    혜원이 사랑해♥
-                                </a>
-                            </li>
-                        </ul>
-                    </nav>
-                </div>
-            </aside>
-        </div>
-    </section>
-    <hr>
+                    <div class="pagination">
+                        <a class="prev no-more-prev">이전</a>
+                        <a><span class="selected">1</span></a>
+                        <a class="next no-more-next">다음</a>
+                    </div>
+                </article>
+                <aside th:replace="fragments/side :: post-side"></aside>
+            </div>
+        </section>
+        <hr>
+    </div>
 </div>
 </html>

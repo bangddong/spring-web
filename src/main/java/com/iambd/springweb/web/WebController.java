@@ -22,7 +22,7 @@ public class WebController {
 
     // 테스트 게시글 목록
     @GetMapping("/index")
-    public String index(Model model) {
+    public String selectPostList(Model model) {
         model.addAttribute("posts",postsService.getPosts());
         model.addAttribute("totCnt",postsService.getPosts().size());
 
@@ -31,9 +31,15 @@ public class WebController {
 
     // 테스트 게시글
     @GetMapping("/post/{id}")
-    public String getPost(Model model, @PathVariable long id) {
+    public String selectPost(Model model, @PathVariable long id) {
         model.addAttribute("post",postsService.getPost(id));
 
-        return "posts/post";
+        return "post/post";
+    }
+
+    // 테스트 게시글 쓰기
+    @GetMapping("/post/newPost")
+    public String newPost() {
+        return "post/newPost";
     }
 }
