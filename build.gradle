@@ -28,6 +28,8 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-devtools'
     implementation 'org.springframework.boot:spring-boot-starter-thymeleaf' // 타임리프 추가
     implementation 'nz.net.ultraq.thymeleaf:thymeleaf-layout-dialect' // 타임리프 레이아웃
+    implementation 'org.jsoup:jsoup:1.13.1' // 테스트 크롤러
+    implementation 'org.seleniumhq.selenium:selenium:2.0rc2'
     // lombok annotation
     compileOnly 'org.projectlombok:lombok'
     //runtimeOnly 'com.h2database:h2' // H2 DB

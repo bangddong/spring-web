@@ -1774,10 +1774,10 @@ a:active {text-decoration:none;}
     margin-top: -24px;
     padding: 12px 0 11px;
 }
-
+/* bdh, margin-bottom 주석 */
 .comment-form {
     position: relative;
-    margin-bottom: 60px;
+    /*margin-bottom: 60px;*/
 }
 .comment-form .field {
     overflow: hidden;

@@ -9,17 +9,18 @@
         <th:block layout:fragment="content-title">layout title</th:block>
     </title>
 
-    <!-- 공통 css -->
-    <link rel="stylesheet" type="text/css" href="/css/custom/btn.css">
-    <link rel="stylesheet" type="text/css" href="/css/custom/content.css">
-    <link rel="stylesheet" type="text/css" href="/css/custom/lightbox.css">
-    <link rel="stylesheet" type="text/css" href="/css/custom/style.css">
-    <link rel="stylesheet" type="text/css" href="/css/font/font.css">
     <!-- 페이지별 css -->
     <th:block layout:fragment="css"></th:block>
+    <!-- 공통 css -->
+    <link rel="stylesheet" type="text/css" th:href="@{/css/custom/btn.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/custom/content.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/custom/lightbox.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/custom/style.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/font/font.css}">
 
-    <!-- 공통 js -->
     <!-- 페이지별 script -->
     <th:block layout:fragment="script"></th:block>
+    <!-- 공통 js -->
+
 </head>
 </html>
