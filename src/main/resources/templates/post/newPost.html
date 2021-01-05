@@ -8,11 +8,17 @@
         .comment-form {
             margin-top: 20px;
         }
+        .ck-editor__editable_inline {
+            height: 500px;
+        }
     </style>
 </th:block>
 <th:block layout:fragment="script">
     <!-- 에디터 -->
     <script src="/js/lib/ckeditor.js"></script>
+    <script src="/js/lib/ko.js"></script>
+    <script src="/js/lib/uploadAdapter.js"></script>
+    <script src="/js/lib/imageResize.js"></script>
 </th:block>
 <div layout:fragment="content" id="tt-body-index" class="layout-aside-right paging-number" style="">
 
@@ -34,8 +40,37 @@
         <hr>
     </div>
     <script>
+
         ClassicEditor
-            .create( document.querySelector( '#editor' ))
+            .create( document.querySelector( '#editor' ), {
+                language: 'ko',
+                extraPlugins: [MyCustomUploadAdapterPlugin], // 이미지 업로드 어댑터
+                plugins: [Image, ImageResize],
+                image: {
+                    resizeUnit: "%",
+                    resizeOptions: [ {
+                            name: 'imageResize:original',
+                            value: null,
+                            icon: 'original'
+                        },
+                    {
+                            name: 'imageResize:25',
+                            value: '25',
+                            icon: 'small'
+                        },
+                    {
+                            name: 'imageResize:50',
+                            value: '50',
+                            icon: 'medium'
+                        },
+                    {
+                            name: 'imageResize:75',
+                            value: '75',
+                            icon: 'large'
+                        } ],
+                    toolbar: [ 'imageResize:25', 'imageResize:50', 'imageResize:75', 'imageResize:original'],
+                }
+            })
             .catch( error => {
                 console.error( error );
             } );
