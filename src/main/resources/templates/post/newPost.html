@@ -4,6 +4,8 @@
       layout:decorator="layout/default">
 <th:block layout:fragment="content-title">글쓰기</th:block>
 <th:block layout:fragment="css">
+    <!-- 썸머노트 css -->
+    <link th:href="@{/css/lib/summernote/summernote.css}" rel="stylesheet" type="text/css">
     <style>
         .comment-form {
             margin-top: 20px;
@@ -14,11 +16,8 @@
     </style>
 </th:block>
 <th:block layout:fragment="script">
-    <!-- 에디터 -->
-    <script src="/js/lib/ckeditor.js"></script>
-    <script src="/js/lib/ko.js"></script>
-    <script src="/js/lib/uploadAdapter.js"></script>
-    <script src="/js/lib/imageResize.js"></script>
+    <!-- 썸머노트 js -->
+    <script th:src="@{/js/lib/summernote/summernote.js}"></script>
 </th:block>
 <div layout:fragment="content" id="tt-body-index" class="layout-aside-right paging-number" style="">
 
@@ -26,8 +25,8 @@
         <section id="container">
             <div class="content-wrap">
                 <article id="content">
-                    <label for="editor"></label>
-                    <textarea id="editor" placeholder="This is some sample content."></textarea>
+                    <label for="summernote"></label>
+                    <textarea id="summernote" placeholder="This is some sample content."></textarea>
                     <div class="comment-form">
                         <div class="submit">
                             <button type="submit" class="btn" onclick="">등록</button>
@@ -40,40 +39,9 @@
         <hr>
     </div>
     <script>
-
-        ClassicEditor
-            .create( document.querySelector( '#editor' ), {
-                language: 'ko',
-                extraPlugins: [MyCustomUploadAdapterPlugin], // 이미지 업로드 어댑터
-                plugins: [Image, ImageResize],
-                image: {
-                    resizeUnit: "%",
-                    resizeOptions: [ {
-                            name: 'imageResize:original',
-                            value: null,
-                            icon: 'original'
-                        },
-                    {
-                            name: 'imageResize:25',
-                            value: '25',
-                            icon: 'small'
-                        },
-                    {
-                            name: 'imageResize:50',
-                            value: '50',
-                            icon: 'medium'
-                        },
-                    {
-                            name: 'imageResize:75',
-                            value: '75',
-                            icon: 'large'
-                        } ],
-                    toolbar: [ 'imageResize:25', 'imageResize:50', 'imageResize:75', 'imageResize:original'],
-                }
-            })
-            .catch( error => {
-                console.error( error );
-            } );
+        $(document).ready(function () {
+            $('#summernote').summernote();
+        });
 
         function readyAlert() {
             alert('구현중입니다.');

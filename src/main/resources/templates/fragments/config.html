@@ -9,18 +9,22 @@
         <th:block layout:fragment="content-title">layout title</th:block>
     </title>
 
-    <!-- 페이지별 css -->
-    <th:block layout:fragment="css"></th:block>
     <!-- 공통 css -->
+    <link rel="stylesheet" type="text/css" th:href="@{/css/lib/bootstrap.css}">
     <link rel="stylesheet" type="text/css" th:href="@{/css/custom/btn.css}">
     <link rel="stylesheet" type="text/css" th:href="@{/css/custom/content.css}">
     <link rel="stylesheet" type="text/css" th:href="@{/css/custom/lightbox.css}">
     <link rel="stylesheet" type="text/css" th:href="@{/css/custom/style.css}">
     <link rel="stylesheet" type="text/css" th:href="@{/css/font/font.css}">
+    <!-- 페이지별 css -->
+    <th:block layout:fragment="css"></th:block>
 
+    <!-- 공통 js -->
+    <script th:src="@{/js/lib/jquery.js}"></script>
+    <script th:src="@{/js/lib/bootstrap/popper.js}"></script>
+    <script th:src="@{/js/lib/bootstrap/bootstrap.js}"></script>
     <!-- 페이지별 script -->
     <th:block layout:fragment="script"></th:block>
-    <!-- 공통 js -->
 
 </head>
 </html>
