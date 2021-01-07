@@ -46,20 +46,20 @@ div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, form, fieldset, 
 header, footer, section, article, aside, nav, hgroup, details, menu, figure, figcaption {
     display: block;
 }
+input[type=text], input[type=email], input[type=password], input[type=submit], textarea {
+    -webkit-appearance: none;
+}
+/* 부트스트랩과 충돌로 주석 */
+/*
 button, input[type=submit], input[type=reset], input[type=button] {
     overflow: visible;
     cursor: pointer;
-}
-input[type=text], input[type=email], input[type=password], input[type=submit], textarea {
-    -webkit-appearance: none;
 }
 input, select, textarea, button {
     font-family: 'Noto Sans KR', sans-serif;
     font-size: 100%;
     border-radius: 0;
 }
-/* 부트스트랩과 충돌로 주석 */
-/*
 button {
     overflow: visible;
     margin: 0;
