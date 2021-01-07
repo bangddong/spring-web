@@ -19,3 +19,6 @@ spring:
   config:
     activate:
       on-profile: local
+  http:
+    converters:
+      preferred-json-mapper: gson
