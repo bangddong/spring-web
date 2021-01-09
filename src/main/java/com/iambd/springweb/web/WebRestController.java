@@ -5,10 +5,11 @@ import com.iambd.springweb.domain.posts.PostsRepository;
 import com.iambd.springweb.dto.posts.PostsSaveRequestDto;
 import lombok.AllArgsConstructor;
 import org.apache.commons.io.FileUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
-import javax.swing.filechooser.FileSystemView;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
@@ -19,6 +20,8 @@ import java.util.UUID;
 public class WebRestController {
 
     private PostsRepository postsRepository;
+
+    private final Logger log = LoggerFactory.getLogger(this.getClass());
 
     @GetMapping("/hello")
     public String hello() {
@@ -57,7 +60,8 @@ public class WebRestController {
 
         JsonObject jsonObject = new JsonObject();
 
-        String fileRoot = "C:\\summernote_image\\";	//저장될 외부 파일 경로
+        String fileRoot = "C://summernote_image/";	//저장될 외부 파일 경로
+        log.info("fileRoot : " + fileRoot);
         String originalFileName = multipartFile.getOriginalFilename();	//오리지날 파일명
         String extension = originalFileName.substring(originalFileName.lastIndexOf("."));	//파일 확장자
 

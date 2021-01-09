@@ -19,6 +19,9 @@ spring:
   config:
     activate:
       on-profile: local
-  http:
+  mvc:
     converters:
       preferred-json-mapper: gson
+logging:
+  level:
+    root: info
