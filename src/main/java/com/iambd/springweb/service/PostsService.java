@@ -39,4 +39,5 @@ public class PostsService {
 
         return new PostsMainResponseDto(post);
     }
+
 }
