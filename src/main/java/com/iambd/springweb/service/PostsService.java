@@ -5,7 +5,6 @@ import com.iambd.springweb.domain.posts.PostsRepository;
 import com.iambd.springweb.dto.posts.PostsMainResponseDto;
 import com.iambd.springweb.dto.posts.PostsSaveRequestDto;
 import lombok.AllArgsConstructor;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
