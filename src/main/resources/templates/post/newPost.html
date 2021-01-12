@@ -17,7 +17,9 @@
 </th:block>
 <th:block layout:fragment="script">
     <!-- 썸머노트 js -->
-    <script th:src="@{/js/lib/summernote/summernote.js}"></script>
+    <script defer th:src="@{/js/lib/summernote/summernote.js}"></script>
+    <!-- 게시글 등록 js -->
+    <script defer th:src="@{/js/app/main.js}"></script>
 </th:block>
 <div layout:fragment="content" id="tt-body-index" class="layout-aside-right paging-number" style="">
 
@@ -25,11 +27,19 @@
         <section id="container">
             <div class="content-wrap">
                 <article id="content">
+                    <div class="input-group">
+                        <label for="postAuthor">
+                            <input id="postAuthor" type="text" class="form-control" placeholder="작성자를 입력하세요." aria-describedby="basic-addon2">
+                        </label>
+                        <label for="postTitle">
+                            <input id="postTitle" type="text" class="form-control" placeholder="제목을 입력하세요." aria-describedby="basic-addon2">
+                        </label>
+                    </div>
                     <label for="summernote"></label>
-                    <textarea id="summernote" placeholder="This is some sample content."></textarea>
+                    <textarea id="summernote"></textarea>
                     <div class="comment-form">
                         <div class="submit">
-                            <button type="submit" class="btn" onclick="">등록</button>
+                            <button type="button" id="btn-save" class="btn">등록</button>
                         </div>
                     </div>
                 </article>
@@ -103,10 +113,6 @@
         function readyAlert() {
             alert('구현중입니다.');
 
-        }
-        
-        function f() {
-            
         }
     </script>
 </div>

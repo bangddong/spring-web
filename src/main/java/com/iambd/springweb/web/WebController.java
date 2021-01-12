@@ -52,7 +52,6 @@ public class WebController {
         return "post/newPost";
     }
 
-    // 테스트 게시글 쓰기
     @GetMapping("/testqwe")
     public void testqwe() {
         // 현재 package의 workspace 경로, Windows는 [ chromedriver.exe ]
