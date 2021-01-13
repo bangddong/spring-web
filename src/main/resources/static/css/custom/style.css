@@ -1483,6 +1483,7 @@ a:active {text-decoration:none;}
     text-indent: -22px;
     list-style: inherit;
 }
+/* 게시글 상세보기 자동삽입 */
 .entry-content ol {
     list-style: decimal inside;
     margin-bottom: 22px;
@@ -1495,7 +1496,7 @@ a:active {text-decoration:none;}
     line-height: 1.5714;
     color: #666;
     text-indent: -15px;
-    list-style: inherit;
+    list-style: none;
 }
 .entry-content img.alignleft {
     float: left;
