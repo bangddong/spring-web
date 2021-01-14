@@ -32,6 +32,10 @@ public class WebRestController {
     public void savePosts(@RequestBody PostsSaveRequestDto dto) {
         postsRepository.save(dto.toEntity());
     }
+    @DeleteMapping("/post")
+    public void deletePosts(@RequestBody PostsSaveRequestDto dto) {
+        postsRepository.deleteById(dto.toEntity());
+    }
 
     // 테스트 게시글 쓰기
     @PostMapping("/post/newPost/image")

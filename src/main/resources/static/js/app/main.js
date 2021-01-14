@@ -4,6 +4,9 @@ let main = {
         $('#btn-save').on('click', function () {
             _this.save();
         });
+        $('#btn-delete').on('click', function () {
+            _this.delete();
+        });
     },
     save: function () {
         let data = {
@@ -21,6 +24,17 @@ let main = {
         }).done(function () {
             alert('글이 등록되었습니다.');
             location.reload();
+        }).fail(function (error) {
+            alert(error);
+        });
+    },
+    delete: function () {
+        $.ajax({
+            type: 'DELETE',
+            url: '/post/'
+        }).done(function () {
+            alert('글이 삭제되었습니다..');
+            location.href= "/index";
         }).fail(function (error) {
             alert(error);
         });

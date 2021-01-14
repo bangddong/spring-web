@@ -92,11 +92,11 @@
                                 <span class="category">카테고리 없음</span>
                                 <h1 th:text="${post.title}"></h1>
                                 <span class="meta">
-                                <span th:text="|by ${post.author}|" class="author"></span>
-                                <span th:text="${#strings.substring(post.createTime,0,10)}" class="date"></span>
-                                <a href="https://dhbang.tistory.com/manage/post/1?returnURL=https%3A%2F%2Fdhbang.tistory.com%2F1">수정</a>
-                                <a href="#" onclick="deleteEntry(1); return false;">삭제</a>
-                            </span>
+                                    <span th:text="|by ${post.author}|" class="author"></span>
+                                    <span th:text="${#strings.substring(post.createTime,0,10)}" class="date"></span>
+                                    <a href="https://dhbang.tistory.com/manage/post/1?returnURL=https%3A%2F%2Fdhbang.tistory.com%2F1">수정</a>
+                                    <button type="button" id="btn-delete" class="btn">삭제</button>
+                                </span>
                             </div>
                         </div>
                         <!-- 게시글 본문 -->
@@ -114,7 +114,7 @@
                                               placeholder="여러분의 소중한 댓글을 입력해주세요."></textarea>
                                         <div class="submit">
                                             <button type="submit" class="btn"
-                                                    onclick="addComment(this, 1); return false;">
+                                                    onclick="">
                                                 등록
                                             </button>
                                         </div>
