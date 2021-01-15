@@ -72,11 +72,8 @@
     </style>
 </th:block>
 <th:block layout:fragment="script">
-    <script>
-        function readyAlert() {
-            alert('구현중입니다.');
-        }
-    </script>
+    <!-- 게시글 등록 js -->
+    <script defer th:src="@{/js/app/main.js}"></script>
 </th:block>
 <div layout:fragment="content" id="tt-body-page" class="layout-aside-right paging-number" style="">
 
@@ -92,9 +89,10 @@
                                 <span class="category">카테고리 없음</span>
                                 <h1 th:text="${post.title}"></h1>
                                 <span class="meta">
+                                    <input th:value="${post.id}" id="postId" type="hidden">
                                     <span th:text="|by ${post.author}|" class="author"></span>
                                     <span th:text="${#strings.substring(post.createTime,0,10)}" class="date"></span>
-                                    <a href="https://dhbang.tistory.com/manage/post/1?returnURL=https%3A%2F%2Fdhbang.tistory.com%2F1">수정</a>
+                                    <a href="">수정</a>
                                     <button type="button" id="btn-delete" class="btn">삭제</button>
                                 </span>
                             </div>
@@ -113,8 +111,7 @@
                                     <textarea name="comment" cols="" rows="4"
                                               placeholder="여러분의 소중한 댓글을 입력해주세요."></textarea>
                                         <div class="submit">
-                                            <button type="submit" class="btn"
-                                                    onclick="">
+                                            <button type="submit" class="btn">
                                                 등록
                                             </button>
                                         </div>
@@ -136,5 +133,10 @@
         </section>
         <hr>
     </div>
+    <script>
+        function readyAlert() {
+            alert('구현중입니다.');
+        }
+    </script>
 </div>
 </html>

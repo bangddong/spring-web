@@ -32,9 +32,9 @@ public class WebRestController {
     public void savePosts(@RequestBody PostsSaveRequestDto dto) {
         postsRepository.save(dto.toEntity());
     }
-    @DeleteMapping("/post")
-    public void deletePosts(@RequestBody PostsSaveRequestDto dto) {
-        postsRepository.deleteById(dto.toEntity());
+    @DeleteMapping("/post/{postId}")
+    public void deletePosts(@PathVariable long postId) {
+        postsRepository.deleteById(postId);
     }
 
     // 테스트 게시글 쓰기

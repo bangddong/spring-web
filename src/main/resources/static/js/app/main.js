@@ -29,9 +29,10 @@ let main = {
         });
     },
     delete: function () {
+        let url = '/post/' + $('#postId').val();
         $.ajax({
             type: 'DELETE',
-            url: '/post/'
+            url: url
         }).done(function () {
             alert('글이 삭제되었습니다..');
             location.href= "/index";
