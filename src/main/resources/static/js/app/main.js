@@ -39,7 +39,23 @@ let main = {
         }).fail(function (error) {
             alert(error);
         });
-    }
+    },
+    post: function () {
+        let url = '/post/commnet';
+        $.ajax({
+            type: 'POST',
+            url: '/post/comment',
+            dataType: 'json',
+            contentType: 'application/json; charset=utf-8',
+            data: JSON.stringify(data)
+        }).done(function () {
+            alert('댓글이 등록되었습니다.');
+            location.href= "/index";
+        }).fail(function (error) {
+            alert(error);
+        });
+    },
+
 
 };
 
