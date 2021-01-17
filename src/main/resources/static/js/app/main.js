@@ -7,6 +7,9 @@ let main = {
         $('#btn-delete').on('click', function () {
             _this.delete();
         });
+        $('#btn-commnet').on('click', function () {
+            _this.commnet();
+        });
     },
     save: function () {
         let data = {
