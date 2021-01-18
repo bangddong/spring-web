@@ -3,6 +3,7 @@ package com.iambd.springweb.web;
 import com.google.gson.JsonObject;
 import com.iambd.springweb.domain.posts.PostsRepository;
 import com.iambd.springweb.dto.posts.PostsSaveRequestDto;
+import com.iambd.springweb.service.PostsService;
 import lombok.AllArgsConstructor;
 import org.apache.commons.io.FileUtils;
 import org.slf4j.Logger;
@@ -19,7 +20,7 @@ import java.util.UUID;
 @AllArgsConstructor // 모든 필드의 인자값으로 하는 생성자 어노테이션
 public class WebRestController {
 
-    private PostsRepository postsRepository;
+    private PostsService postsService;
 
     private final Logger log = LoggerFactory.getLogger(this.getClass());
 
@@ -30,32 +31,12 @@ public class WebRestController {
 
     @PostMapping("/post")
     public void savePosts(@RequestBody PostsSaveRequestDto dto) {
-        postsRepository.save(dto.toEntity());
+        postsService.savePost(dto);
     }
+
     @DeleteMapping("/post/{postId}")
     public void deletePosts(@PathVariable long postId) {
-        postsRepository.deleteById(postId);
-    }
-
-    // 테스트 게시글 쓰기
-    @PostMapping("/post/newPost/image")
-    public String uploadImage(@RequestParam("upload")MultipartFile file) {
-        String returnString = "업로드되었습니다.";
-
-        String rootPath = "D://spring-web";
-        String basePath = rootPath + "/" + "postImage";
-
-        String filePath = basePath + "/" + file.getOriginalFilename();
-
-        try {
-            File dest = new File(filePath);
-            file.transferTo(dest);
-        } catch (IOException e) {
-            returnString = "파일생성 실패!!!";
-            e.printStackTrace();
-        }
-
-        return returnString;
+        postsService.deletePost(postId);
     }
 
     @PostMapping(value="/uploadSummernoteImageFile", produces = "application/json")
