@@ -13,6 +13,6 @@ public class WebMvcConfig implements WebMvcConfigurer {
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
         registry.addResourceHandler("/summernoteImage/**") // 요 경로를
-                .addResourceLocations("file:///C:/summernote_image/"); // 요기서 찾는다
+                .addResourceLocations("file:///C:/summernoteImage/"); // 요기서 찾는다
     }
 }

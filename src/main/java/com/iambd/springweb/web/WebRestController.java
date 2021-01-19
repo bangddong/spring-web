@@ -1,7 +1,7 @@
 package com.iambd.springweb.web;
 
 import com.google.gson.JsonObject;
-import com.iambd.springweb.domain.posts.PostsRepository;
+import com.iambd.springweb.common.Constants;
 import com.iambd.springweb.dto.posts.PostsSaveRequestDto;
 import com.iambd.springweb.service.PostsService;
 import lombok.AllArgsConstructor;
@@ -14,6 +14,7 @@ import org.springframework.web.multipart.MultipartFile;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.Optional;
 import java.util.UUID;
 
 @RestController
@@ -45,9 +46,10 @@ public class WebRestController {
 
         JsonObject jsonObject = new JsonObject();
 
-        String fileRoot = "C://summernote_image/";	//저장될 외부 파일 경로
+        String fileRoot = Constants.TEMP_POST_DIR_PATH;	//저장될 외부 파일 경로
         log.info("fileRoot : " + fileRoot);
         String originalFileName = multipartFile.getOriginalFilename();	//오리지날 파일명
+        Optional<String> filName = Optional.ofNullable(originalFileName);
         String extension = originalFileName.substring(originalFileName.lastIndexOf("."));	//파일 확장자
 
         String savedFileName = UUID.randomUUID() + extension;	//저장될 파일 명
