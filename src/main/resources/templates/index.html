@@ -2,8 +2,10 @@
       xmlns:th="http://www.thymeleaf.org"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorator="layout/default">
-<th:block layout:fragment="content-title">메인</th:block>
-<th:block layout:fragment="css">
+<head>
+    <!--<th:block layout:fragment="content-title">메인</th:block>-->
+    <title>ㅇㅇ</title>
+
     <style type="text/css">
         .main-banner .dimmed a[role=button] {
             padding: 12px 22px;
@@ -16,14 +18,14 @@
             color: #ffffff;
         }
     </style>
-</th:block>
-<th:block layout:fragment="script">
+
     <script>
         function readyAlert() {
             alert('구현중입니다.');
         }
     </script>
-</th:block>
+</head>
+
 <div layout:fragment="content" id="tt-body-index" class="layout-aside-right paging-number" style="">
 
     <div id="wrap">

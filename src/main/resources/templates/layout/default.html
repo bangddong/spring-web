@@ -2,7 +2,28 @@
 <html lang="ko"
       xmlns:th="http://www.thymeleaf.org"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
-    <head th:replace="fragments/config :: post-config"></head>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport"
+              content="user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, width=device-width">
+        <title>
+            <th:block layout:fragment="content-title">layout title</th:block>
+        </title>
+
+        <!-- 공통 css -->
+        <link rel="stylesheet" type="text/css" th:href="@{/css/lib/bootstrap.css}">
+        <link rel="stylesheet" type="text/css" th:href="@{/css/custom/style.css}">
+        <link rel="stylesheet" type="text/css" th:href="@{/css/custom/btn.css}">
+        <link rel="stylesheet" type="text/css" th:href="@{/css/custom/content.css}">
+        <link rel="stylesheet" type="text/css" th:href="@{/css/custom/lightbox.css}">
+        <link rel="stylesheet" type="text/css" th:href="@{/css/font/font.css}">
+
+        <!-- 공통 js -->
+        <script th:src="@{/js/lib/jquery.js}"></script>
+        <script th:src="@{/js/lib/bootstrap/popper.js}"></script>
+        <script th:src="@{/js/lib/bootstrap/bootstrap.js}"></script>
+
+    </head>
     <header th:replace="fragments/header :: post-header"></header>
     <div layout:fragment="content"></div>
     <footer th:replace="fragments/footer :: post-footer"></footer>

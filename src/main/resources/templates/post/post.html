@@ -2,8 +2,9 @@
       xmlns:th="http://www.thymeleaf.org"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorator="layout/default">
-<th:block layout:fragment="content-title">게시글</th:block>
-<th:block layout:fragment="css">
+<head>
+    <th:block layout:fragment="content-title">게시글</th:block>
+
     <style type="text/css">
         .entry-content a, .post-header h1 em, .comments h2 .count {
             color: #04beb8
@@ -70,11 +71,12 @@
             color: rgba(255, 255, 255, 0.6);
         }
     </style>
-</th:block>
-<th:block layout:fragment="script">
+
     <!-- 게시글 등록 js -->
     <script defer th:src="@{/js/app/main.js}"></script>
-</th:block>
+
+</head>
+
 <div layout:fragment="content" id="tt-body-page" class="layout-aside-right paging-number" style="">
 
     <div id="wrap">

@@ -2,8 +2,10 @@
       xmlns:th="http://www.thymeleaf.org"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorator="layout/default">
-<th:block layout:fragment="content-title">글쓰기</th:block>
-<th:block layout:fragment="css">
+<head>
+    <!--<th:block layout:fragment="content-title">글쓰기</th:block>-->
+    <title>글쓰기</title>
+
     <!-- 썸머노트 css -->
     <link th:href="@{/css/lib/summernote/summernote.css}" rel="stylesheet" type="text/css">
     <style>
@@ -14,13 +16,14 @@
             height: 500px;
         }
     </style>
-</th:block>
-<th:block layout:fragment="script">
+
     <!-- 썸머노트 js -->
     <script defer th:src="@{/js/lib/summernote/summernote.js}"></script>
     <!-- 게시글 등록 js -->
     <script defer th:src="@{/js/app/main.js}"></script>
-</th:block>
+
+</head>
+
 <div layout:fragment="content" id="tt-body-index" class="layout-aside-right paging-number" style="">
 
     <div id="wrap">

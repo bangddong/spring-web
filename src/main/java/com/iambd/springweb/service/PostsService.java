@@ -6,19 +6,15 @@ import com.iambd.springweb.domain.posts.PostsRepository;
 import com.iambd.springweb.dto.posts.PostsMainResponseDto;
 import com.iambd.springweb.dto.posts.PostsSaveRequestDto;
 import lombok.AllArgsConstructor;
-import org.apache.commons.io.FileUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.io.File;
-import java.io.InputStream;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
-import java.util.UUID;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
@@ -32,19 +28,17 @@ public class PostsService {
 
     @Transactional // 트랜잰션, 로직 실행 중 에러 발생시 모든 작업 롤백, 즉 커밋을 하지 않음.
     public void savePost(PostsSaveRequestDto dto) {
-        LocalDate today = LocalDate.now();
-        String todayPostPath = today.getYear() + "/" + today.getMonthValue() + "/" + today.getDayOfMonth() + "/";
+        String today = LocalDate.now().toString();
+        String todayPostPath = today.substring(0,today.indexOf("-")) + "/" + today.substring(today.indexOf("-") + 1).replaceAll("-","") + "/";
         Long postId = postsRepository.save(dto.toEntity()).getId();
         File postFolder = new File(Constants.POST_DIR_PATH + todayPostPath + postId);
 
-        Pattern pattern = Pattern.compile("(?i)<img[^>]*src=[\"']?([^>\"']+)[\"']?[^>]*>"); //img 태그 src 추출 정규표현식
+        Pattern pattern = Pattern.compile("<img[^>]*src=[\"']?([^>\"']+)[\"']?[^>]*>"); //img 태그 src 추출 정규표현식
         Matcher matcher = pattern.matcher(dto.getContent());
         ArrayList<String> contentImg = new ArrayList<>(); // 게시글 이미지 경로 리스트
 
-        int i = 0;
         while (matcher.find()) {
-            contentImg.add(matcher.group(i));
-            i++;
+            contentImg.add(matcher.group(1));
         }
 
         // 게시글에서 이미지 경로 추출하여 오늘날짜 + 게시글 아이디 폴더로 이동
@@ -52,7 +46,7 @@ public class PostsService {
             for (String imgPath : contentImg) {
                 log.info("imgPath : " + imgPath);
                 File imgSrc = new File("C://" + imgPath);
-                if (imgSrc.renameTo(new File(postFolder + "/" + imgPath.substring(imgPath.lastIndexOf("/"))))) {
+                if (imgSrc.renameTo(new File(postFolder + "/" + imgPath.substring(imgPath.lastIndexOf("/") ) ) ) ) {
                     log.info("파일 이동 성공!!!");
                 } else {
                     log.info("파일 이동 실패!!!");
