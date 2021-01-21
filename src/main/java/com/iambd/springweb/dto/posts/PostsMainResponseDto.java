@@ -9,18 +9,18 @@ import java.util.Optional;
 
 @Getter
 public class PostsMainResponseDto {
-    private Long id;
-    private String title;
-    private String content;
-    private String author;
+    private Long postId;
+    private String postTitle;
+    private String postContent;
+    private String postAuthor;
     private String createTime;
     private String modifiedDate;
 
     public PostsMainResponseDto(Posts entity) {
-        id = entity.getId();
-        title = entity.getTitle();
-        content = entity.getContent();
-        author = entity.getAuthor();
+        postId = entity.getPostId();
+        postTitle = entity.getPostTitle();
+        postContent = entity.getPostContent();
+        postAuthor = entity.getPostAuthor();
         createTime = toStringDateTime(entity.getCreateTime());
         modifiedDate = toStringDateTime(entity.getModifiedDate());
     }

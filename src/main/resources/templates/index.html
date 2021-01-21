@@ -38,12 +38,12 @@
                     </div>
                     <div class="inner">
                         <div th:each="post:${posts}" class="post-item">
-                            <a th:href="@{|/post/${post.id}|}">
+                            <a th:href="@{|/post/${post.getPostId}|}">
                             <span class="thum">
                                 <img src="/css/images/coffee.jfif" alt="">
                             </span>
-                                <span th:text="${post.title}" class="title"></span>
-                                <span th:text="${post.content}" class="excerpt"></span>
+                                <span th:text="${post.getPostTitle}" class="title"></span>
+                                <span th:text="${post.getPostContent}" class="excerpt"></span>
                                 <span class="meta">
                                 <span th:text="${#strings.substring(post.createTime,0,10)}" class="date"></span>
                             </span>

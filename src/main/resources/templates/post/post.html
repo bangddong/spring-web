@@ -89,10 +89,10 @@
                              style="background-image:url(https://t1.daumcdn.net/cfile/tistory/99AE79475FEC7C4B34)">
                             <div class="inner">
                                 <span class="category">카테고리 없음</span>
-                                <h1 th:text="${post.title}"></h1>
+                                <h1 th:text="${post.getPostTitle}"></h1>
                                 <span class="meta">
-                                    <input th:value="${post.id}" id="postId" type="hidden">
-                                    <span th:text="|by ${post.author}|" class="author"></span>
+                                    <input th:value="${post.getPostId}" id="postId" type="hidden">
+                                    <span th:text="|by ${post.getPostAuthor}|" class="author"></span>
                                     <span th:text="${#strings.substring(post.createTime,0,10)}" class="date"></span>
                                     <a href="">수정</a>
                                     <button type="button" id="btn-delete" class="btn">삭제</button>
@@ -101,7 +101,7 @@
                         </div>
                         <!-- 게시글 본문 -->
                         <div class="entry-content">
-                            <th:block th:utext="${post.content}"></th:block>
+                            <th:block th:utext="${post.getPostContent}"></th:block>
                         </div>
                         <!-- 댓글 -->
                         <div class="comments">

@@ -8,7 +8,6 @@ import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 
 import java.time.LocalDateTime;
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Stream;
 
 @DataJpaTest
@@ -43,8 +42,8 @@ class PostsRepositoryTest {
 
         //then (테스트 검증)
         Posts testPost = postList.get(0);
-        Assertions.assertEquals(testPost.getTitle(), "테스트 게시글");
-        Assertions.assertEquals(testPost.getContent(), "테스트 본문");
+        Assertions.assertEquals(testPost.getPostTitle(), "테스트 게시글");
+        Assertions.assertEquals(testPost.getPostContent(), "테스트 본문");
     }
 
     // desc 정렬이니 ID가 역순으로 조회되어야 함.
@@ -56,7 +55,7 @@ class PostsRepositoryTest {
         //when
         Stream<Posts> postList = postsRepository.findAllDesc();
         //then
-        Assertions.assertEquals(testId, postList.findFirst().get().getId());
+        Assertions.assertEquals(testId, postList.findFirst().get().getPostId());
     }
 
     @Test

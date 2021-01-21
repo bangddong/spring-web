@@ -26,9 +26,9 @@
         </thead>
         <tbody id="tbody">
         <tr th:each="post : ${posts}">
-            <td th:text="${post.id}"></td>
-            <td th:text="${post.title}"></td>
-            <td th:text="${post.author}"></td>
+            <td th:text="${post.getPostId}"></td>
+            <td th:text="${post.getPostTitle}"></td>
+            <td th:text="${post.getPostAuthor}"></td>
             <td th:text="${post.modifiedDate}"></td>
         </tr>
         </tbody>

@@ -18,20 +18,23 @@ public class Posts extends BaseTimeEntity {
 
     @Id // PK값
     @GeneratedValue(strategy = GenerationType.IDENTITY) // 시퀀스
-    private Long id;
+    private Long postId;
 
     @Column(length = 500, nullable = false)
-    private String title;
+    private String postTitle;
 
     @Column(columnDefinition = "TEXT", nullable = false) // columnDefinition -> 컬럼 타입 명시
-    private String content;
+    private String postContent;
 
-    private String author;
+    private String postAuthor;
+
+    private String postThumbnail;
 
     @Builder
-    public Posts(String title, String content, String author) {
-        this.title = title;
-        this.content = content;
-        this.author = author;
+    public Posts(String postTitle, String postContent, String postAuthor,String postThumbnail) {
+        this.postTitle = postTitle;
+        this.postContent = postContent;
+        this.postAuthor = postAuthor;
+        this.postThumbnail = postThumbnail;
     }
 }

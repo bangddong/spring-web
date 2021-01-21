@@ -11,10 +11,14 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.imageio.ImageIO;
+import java.awt.*;
+import java.awt.image.BufferedImage;
 import java.io.File;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
@@ -30,8 +34,6 @@ public class PostsService {
     public void savePost(PostsSaveRequestDto dto) {
         String today = LocalDate.now().toString();
         String todayPostPath = today.substring(0,today.indexOf("-")) + "/" + today.substring(today.indexOf("-") + 1).replaceAll("-","") + "/";
-        Long postId = postsRepository.save(dto.toEntity()).getId();
-        File postFolder = new File(Constants.POST_DIR_PATH + todayPostPath + postId);
 
         Pattern pattern = Pattern.compile("<img[^>]*src=[\"']?([^>\"']+)[\"']?[^>]*>"); //img 태그 src 추출 정규표현식
         Matcher matcher = pattern.matcher(dto.getContent());
@@ -40,6 +42,33 @@ public class PostsService {
         while (matcher.find()) {
             contentImg.add(matcher.group(1));
         }
+        // /summernoteImage/39da825d-c098-40d2-9cb8-5e8141dbb9b9.JPG
+        Optional<String> thumbnailPathCheck = Optional.ofNullable(contentImg.get(0));
+        thumbnailPathCheck.ifPresent(thumbanilPath -> {
+            thumbanilPath = Constants.TEMP_POST_DIR_PATH + thumbanilPath.substring(thumbanilPath.lastIndexOf("/"));
+
+            String thumbnailExtension = thumbanilPath.substring(thumbanilPath.lastIndexOf("."));
+            File thumbnailFile = new File(thumbanilPath);
+            double ratio = 2;
+            try {
+                BufferedImage oImage = ImageIO.read(thumbnailFile); // 원본이미지
+                int tWidth = (int) (oImage.getWidth() / ratio); // 생성할 썸네일이미지의 너비
+                int tHeight = (int) (oImage.getHeight() / ratio); // 생성할 썸네일이미지의 높이
+
+                BufferedImage tImage = new BufferedImage(tWidth, tHeight, BufferedImage.TYPE_3BYTE_BGR); // 썸네일이미지
+                Graphics2D graphic = tImage.createGraphics();
+                Image image = oImage.getScaledInstance(tWidth, tHeight, Image.SCALE_SMOOTH);
+                graphic.drawImage(image, 0, 0, tWidth, tHeight, null);
+                graphic.dispose(); // 리소스를 모두 해제
+
+                //ImageIO.write(tImage, thumbnailExtension, );
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        });
+
+        Long postId = postsRepository.save(dto.toEntity()).getPostId();
+        File postFolder = new File(Constants.POST_DIR_PATH + todayPostPath + postId);
 
         // 게시글에서 이미지 경로 추출하여 오늘날짜 + 게시글 아이디 폴더로 이동
         if(postFolder.mkdirs()) {
