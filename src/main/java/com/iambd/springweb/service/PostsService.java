@@ -61,7 +61,7 @@ public class PostsService {
                 graphic.drawImage(image, 0, 0, tWidth, tHeight, null);
                 graphic.dispose(); // 리소스를 모두 해제
 
-                //ImageIO.write(tImage(원본), thumbnailExtension,파일경로(썸네일) );
+                //ImageIO.write(tImage, thumbnailExtension,tImage);
             } catch (Exception e) {
                 e.printStackTrace();
             }

@@ -11,22 +11,25 @@ import lombok.Setter;
 @NoArgsConstructor
 public class PostsSaveRequestDto {
 
-    private String title;
-    private String content;
-    private String author;
+    private String postTitle;
+    private String postContent;
+    private String postAuthor;
+    private String postThumbnail;
+
 
     public Posts toEntity() {
         return Posts.builder()
-                .title(title)
-                .content(content)
-                .author(author)
+                .postTitle(postTitle)
+                .postContent(postContent)
+                .postThumbnail(postThumbnail)
+                .postAuthor(postAuthor)
                 .build();
     }
 
     @Builder
-    public PostsSaveRequestDto(String title, String content, String author) {
-        this.title = title;
-        this.content = content;
-        this.author = author;
+    public PostsSaveRequestDto(String postTitle, String postContent, String postAuthor) {
+        this.postTitle = postTitle;
+        this.postContent = postContent;
+        this.postAuthor = postAuthor;
     }
 }
