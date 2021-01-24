@@ -36,7 +36,7 @@ public class PostsService {
         String todayPostPath = today.substring(0,today.indexOf("-")) + "/" + today.substring(today.indexOf("-") + 1).replaceAll("-","") + "/";
 
         Pattern pattern = Pattern.compile("<img[^>]*src=[\"']?([^>\"']+)[\"']?[^>]*>"); //img 태그 src 추출 정규표현식
-        Matcher matcher = pattern.matcher(dto.getContent());
+        Matcher matcher = pattern.matcher(dto.getPostContent());
         ArrayList<String> contentImg = new ArrayList<>(); // 게시글 이미지 경로 리스트
 
         while (matcher.find()) {
