@@ -39,6 +39,8 @@ public class PostsService {
         Matcher matcher = pattern.matcher(dto.getPostContent());
         ArrayList<String> contentImg = new ArrayList<>(); // 게시글 이미지 경로 리스트
 
+        Long postId = postsRepository.save(dto.toEntity()).getPostId(); // DB Save
+
         while (matcher.find()) {
             contentImg.add(matcher.group(1));
         }
@@ -48,10 +50,10 @@ public class PostsService {
             thumbanilPath = Constants.TEMP_POST_DIR_PATH + thumbanilPath.substring(thumbanilPath.lastIndexOf("/"));
 
             String thumbnailExtension = thumbanilPath.substring(thumbanilPath.lastIndexOf("."));
-            File thumbnailFile = new File(thumbanilPath);
+            File originalFile = new File(thumbanilPath);
             double ratio = 2;
             try {
-                BufferedImage oImage = ImageIO.read(thumbnailFile); // 원본이미지
+                BufferedImage oImage = ImageIO.read(originalFile); // 원본이미지
                 int tWidth = (int) (oImage.getWidth() / ratio); // 생성할 썸네일이미지의 너비
                 int tHeight = (int) (oImage.getHeight() / ratio); // 생성할 썸네일이미지의 높이
 
@@ -61,13 +63,14 @@ public class PostsService {
                 graphic.drawImage(image, 0, 0, tWidth, tHeight, null);
                 graphic.dispose(); // 리소스를 모두 해제
 
-                //ImageIO.write(tImage, thumbnailExtension,tImage);
+                File thumbnailFile = new File(Constants.POST_DIR_PATH + todayPostPath + postId);
+                ImageIO.write(tImage, thumbnailExtension,thumbnailFile); // 썸네일 생성
+
             } catch (Exception e) {
                 e.printStackTrace();
             }
         });
 
-        Long postId = postsRepository.save(dto.toEntity()).getPostId();
         File postFolder = new File(Constants.POST_DIR_PATH + todayPostPath + postId);
 
         // 게시글에서 이미지 경로 추출하여 오늘날짜 + 게시글 아이디 폴더로 이동
