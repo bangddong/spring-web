@@ -14,6 +14,7 @@ import javax.persistence.*;
 @NoArgsConstructor(access = AccessLevel.PROTECTED) // 기본 생성자 추가
 @Getter
 @Entity // 테이블과 매칭될 클래스임을 명시(언더스코어 네이밍)
+@Table(name = "POST") // 매핑할 테이블
 public class Posts extends BaseTimeEntity {
 
     @Id // PK값

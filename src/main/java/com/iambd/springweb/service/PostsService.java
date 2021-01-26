@@ -1,5 +1,6 @@
 package com.iambd.springweb.service;
 
+import com.iambd.springweb.common.CommonUtils;
 import com.iambd.springweb.common.Constants;
 import com.iambd.springweb.domain.posts.Posts;
 import com.iambd.springweb.domain.posts.PostsRepository;
@@ -46,26 +47,9 @@ public class PostsService {
         }
         // /summernoteImage/39da825d-c098-40d2-9cb8-5e8141dbb9b9.JPG
         Optional<String> thumbnailPathCheck = Optional.ofNullable(contentImg.get(0));
-        thumbnailPathCheck.ifPresent(thumbanilPath -> {
-            thumbanilPath = Constants.TEMP_POST_DIR_PATH + thumbanilPath.substring(thumbanilPath.lastIndexOf("/"));
-
-            String thumbnailExtension = thumbanilPath.substring(thumbanilPath.lastIndexOf("."));
-            File originalFile = new File(thumbanilPath);
-            double ratio = 2;
+        thumbnailPathCheck.ifPresent(originalFilePath -> {
             try {
-                BufferedImage oImage = ImageIO.read(originalFile); // 원본이미지
-                int tWidth = (int) (oImage.getWidth() / ratio); // 생성할 썸네일이미지의 너비
-                int tHeight = (int) (oImage.getHeight() / ratio); // 생성할 썸네일이미지의 높이
-
-                BufferedImage tImage = new BufferedImage(tWidth, tHeight, BufferedImage.TYPE_3BYTE_BGR); // 썸네일이미지
-                Graphics2D graphic = tImage.createGraphics();
-                Image image = oImage.getScaledInstance(tWidth, tHeight, Image.SCALE_SMOOTH);
-                graphic.drawImage(image, 0, 0, tWidth, tHeight, null);
-                graphic.dispose(); // 리소스를 모두 해제
-
-                File thumbnailFile = new File(Constants.POST_DIR_PATH + todayPostPath + postId);
-                ImageIO.write(tImage, thumbnailExtension,thumbnailFile); // 썸네일 생성
-
+                CommonUtils.getPostThumbnail(originalFilePath,todayPostPath + postId);
             } catch (Exception e) {
                 e.printStackTrace();
             }

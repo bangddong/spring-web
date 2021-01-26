@@ -13,9 +13,9 @@ let main = {
     },
     save: function () {
         let data = {
-            title: $('#postTitle').val(),
-            author: $('#postAuthor').val(),
-            content: $('#summernote').val()
+            postTitle: $('#postTitle').val(),
+            postAuthor: $('#postAuthor').val(),
+            postContent: $('#summernote').val()
         };
 
         $.ajax({
@@ -27,7 +27,8 @@ let main = {
         }).done(function () {
             alert('글이 등록되었습니다.');
             location.href= "/index";
-        }).fail(function (error) {
+        }).error(function(request,status,error){
+            alert('실패');
             alert(error);
         });
     },
@@ -39,7 +40,8 @@ let main = {
         }).done(function () {
             alert('글이 삭제되었습니다..');
             location.href= "/index";
-        }).fail(function (error) {
+        }).error(function(request,status,error){
+            alert('실패');
             alert(error);
         });
     },
@@ -54,7 +56,7 @@ let main = {
         }).done(function () {
             alert('댓글이 등록되었습니다.');
             location.href= "/index";
-        }).fail(function (error) {
+        }).error(function(request,status,error){
             alert(error);
         });
     },

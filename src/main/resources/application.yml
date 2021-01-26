@@ -13,6 +13,8 @@ spring:
     data: classpath:data-h2.sql # 시작할때 실행시킬 script
   jpa:
     show-sql: true
+    hibernate:
+      ddl-auto: create # 없으면 자동 create
   h2:
     console:
       enabled: true

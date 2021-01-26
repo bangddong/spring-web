@@ -1,5 +1,6 @@
 package com.iambd.springweb.config;
 
+import com.iambd.springweb.common.Constants;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
@@ -13,6 +14,6 @@ public class WebMvcConfig implements WebMvcConfigurer {
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
         registry.addResourceHandler("/summernoteImage/**") // 요 경로를
-                .addResourceLocations("file:///C:/summernoteImage/"); // 요기서 찾는다
+                .addResourceLocations("file:///" + Constants.TEMP_POST_DIR_PATH); // 요기서 찾는다
     }
 }
