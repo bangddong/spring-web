@@ -49,12 +49,11 @@ public class WebRestController {
         String fileRoot = Constants.TEMP_POST_DIR_PATH;	//저장될 외부 파일 경로
         log.info("fileRoot : " + fileRoot);
         String originalFileName = multipartFile.getOriginalFilename();	//오리지날 파일명
-        Optional<String> filName = Optional.ofNullable(originalFileName);
         String extension = originalFileName.substring(originalFileName.lastIndexOf("."));	//파일 확장자
 
         String savedFileName = UUID.randomUUID() + extension;	//저장될 파일 명
 
-        File targetFile = new File(fileRoot + savedFileName);
+        File targetFile = new File(fileRoot + "/" + savedFileName);
 
         try {
             InputStream fileStream = multipartFile.getInputStream();

@@ -24,8 +24,8 @@ public class CommonUtils {
         graphic.drawImage(image, 0, 0, tWidth, tHeight, null);
         graphic.dispose(); // 리소스를 모두 해제
 
-        File thumbnailFile = new File(Constants.POST_DIR_PATH + thumbnailFilePath);
-        ImageIO.write(tImage, thumbnailExtension,thumbnailFile); // 썸네일 생성
+         File thumbnailFile = new File(Constants.POST_DIR_PATH + thumbnailFilePath + thumbnailExtension);
+         ImageIO.write(tImage, thumbnailExtension,thumbnailFile); // 썸네일 생성
 
     }
 }

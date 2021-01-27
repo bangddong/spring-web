@@ -45,33 +45,33 @@ public class PostsService {
         while (matcher.find()) {
             contentImg.add(matcher.group(1));
         }
+
+        File postFolder = new File(Constants.POST_DIR_PATH + todayPostPath + postId);
+
         // /summernoteImage/39da825d-c098-40d2-9cb8-5e8141dbb9b9.JPG
         Optional<String> thumbnailPathCheck = Optional.ofNullable(contentImg.get(0));
         thumbnailPathCheck.ifPresent(originalFilePath -> {
             try {
-                CommonUtils.getPostThumbnail(originalFilePath,todayPostPath + postId);
+                CommonUtils.getPostThumbnail(originalFilePath,todayPostPath + postId + "/thumbnail");
+                // 게시글에서 이미지 경로 추출하여 오늘날짜 + 게시글 아이디 폴더로 이동
+                if(postFolder.mkdirs()) {
+                    for (String imgPath : contentImg) {
+                        log.info("imgPath : " + imgPath);
+                        File imgSrc = new File("C://" + imgPath);
+                        if (imgSrc.renameTo(new File(postFolder + "/" + imgPath.substring(imgPath.lastIndexOf("/") ) ) ) ) {
+                            log.info("파일 이동 성공!!!");
+                        } else {
+                            log.info("파일 이동 실패!!!");
+                        }
+                    }
+                    log.info("게시글 폴더 생성!!!");
+                } else {
+                    log.info("게시글 폴더 생성실패!!!");
+                }
             } catch (Exception e) {
                 e.printStackTrace();
             }
         });
-
-        File postFolder = new File(Constants.POST_DIR_PATH + todayPostPath + postId);
-
-        // 게시글에서 이미지 경로 추출하여 오늘날짜 + 게시글 아이디 폴더로 이동
-        if(postFolder.mkdirs()) {
-            for (String imgPath : contentImg) {
-                log.info("imgPath : " + imgPath);
-                File imgSrc = new File("C://" + imgPath);
-                if (imgSrc.renameTo(new File(postFolder + "/" + imgPath.substring(imgPath.lastIndexOf("/") ) ) ) ) {
-                    log.info("파일 이동 성공!!!");
-                } else {
-                    log.info("파일 이동 실패!!!");
-                }
-            }
-            log.info("게시글 폴더 생성!!!");
-        } else {
-            log.info("게시글 폴더 생성실패!!!");
-        }
     }
 
     public void deletePost(long postId) {
