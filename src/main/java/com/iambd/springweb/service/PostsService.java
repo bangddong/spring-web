@@ -62,7 +62,7 @@ public class PostsService {
                         if (imgSrc.renameTo(new File(postFolder + "/" + imgPath.substring(imgPath.lastIndexOf("/") ) ) ) ) {
                             log.info("파일 이동 성공!!!");
                         } else {
-                            log.info("파일 이동 실패!!!");
+                            log.info("파일 이동 실패!!!!");
                         }
                     }
                     log.info("게시글 폴더 생성!!!");
