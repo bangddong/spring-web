@@ -13,7 +13,7 @@ public class CommonUtils {
         String thumbnailExtension = originalFilePath.substring(originalFilePath.lastIndexOf("."));
         File originalFile = new File(thumbanilPath);
 
-        double ratio = 2;
+        double ratio = Constants.THUMBNAIL_RATIO; // 썸네일 비율
         BufferedImage oImage = ImageIO.read(originalFile); // 원본이미지
         int tWidth = (int) (oImage.getWidth() / ratio); // 생성할 썸네일이미지의 너비
         int tHeight = (int) (oImage.getHeight() / ratio); // 생성할 썸네일이미지의 높이
