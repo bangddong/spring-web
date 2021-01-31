@@ -31,7 +31,7 @@ public class PostsService {
     private final Logger log = LoggerFactory.getLogger(this.getClass());
     private PostsRepository postsRepository;
 
-    @Transactional // 트랜잰션, 로직 실행 중 에러 발생시 모든 작업 롤백, 즉 커밋을 하지 않음.
+    @Transactional // 트랜잰션, 로직 실행 중 에러 발생시 모든 작업 롤백, 즉 커밋을 하지 않음. qqwe
     public void savePost(PostsSaveRequestDto dto) {
         String today = LocalDate.now().toString();
         String todayPostPath = today.substring(0,today.indexOf("-")) + "/" + today.substring(today.indexOf("-") + 1).replaceAll("-","") + "/";
