@@ -14,7 +14,7 @@ spring:
   jpa:
     show-sql: true
     hibernate:
-      ddl-auto: create # 없으면 자동 create
+      ddl-auto: create-drop # 시작시 create, 종료시 drop
   h2:
     console:
       enabled: true

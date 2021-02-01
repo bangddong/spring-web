@@ -48,7 +48,6 @@ public class PostsService {
 
         File postFolder = new File(Constants.POST_DIR_PATH + todayPostPath + postId);
 
-        // /summernoteImage/39da8235d-c098-40d2-9cb8-5e8141dbb9b9.JPG
         // 섬네일 생성 바꿔야됨
         Optional<String> thumbnailPathCheck = Optional.ofNullable(contentImg.get(0));
         thumbnailPathCheck.ifPresent(originalFilePath -> {
